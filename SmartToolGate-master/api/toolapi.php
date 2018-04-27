@@ -29,20 +29,22 @@ $row = mysql_fetch_array($result);
 $bal = $row["Balance"];
 if($bal >= 100)
 {
-    $bal = $bal - 100 ;
 
+    $bal = $bal - 100 ;
     $result = mysql_query("UPDATE SmartTollGate SET Balance = '$bal' WHERE Rtag = '$tag'");
     if ($result) {
-        $mo = 1;
+        $response["status"] = "1";
+        echo json_encode($response);
     }else{
-    $mo = 0;
+        $response["status"] = "0";
+        echo json_encode($response);
     }
 }
 else{
-    $mo = 2;
+        $response["status"] = "2";
+        echo json_encode($response);
 }
-$response = $mo;
-echo $response;
+
 
 
 ?>
